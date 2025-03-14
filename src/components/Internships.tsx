@@ -70,6 +70,11 @@ const Internships = () => {
     };
   }, []);
 
+  const redirectToGoogleForm = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open('https://forms.google.com/your-google-form-link', '_blank');
+  };
+
   return (
     <section id="internships" className="section-padding bg-gradient-to-b from-white to-nexora-50 dark:from-slate-900 dark:to-slate-900 relative">
       <div className="container mx-auto max-w-7xl">
@@ -144,8 +149,12 @@ const Internships = () => {
                     ))}
                   </div>
                   
-                  <Button variant="outline" className="w-full group">
-                    View Details 
+                  <Button 
+                    variant="outline" 
+                    className="w-full group"
+                    onClick={redirectToGoogleForm}
+                  >
+                    Apply Now
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </div>
@@ -155,7 +164,10 @@ const Internships = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <Button className="bg-nexora-500 hover:bg-nexora-600 text-white">
+          <Button 
+            className="bg-nexora-500 hover:bg-nexora-600 text-white"
+            onClick={redirectToGoogleForm}
+          >
             View All Internships <Briefcase className="ml-2 h-5 w-5" />
           </Button>
         </div>

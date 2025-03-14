@@ -19,6 +19,11 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleInternshipClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open('https://forms.google.com/your-google-form-link', '_blank');
+  };
+
   return (
     <header
       className={cn(
@@ -37,7 +42,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <NavLink href="#internships">Internships</NavLink>
+          <NavLink href="#internships" onClick={handleInternshipClick}>Internships</NavLink>
           <NavLink href="#courses">Courses</NavLink>
           <NavLink href="#journals">Journals</NavLink>
           <div className="relative group">
@@ -75,7 +80,10 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-900 shadow-lg glass-card animate-slide-up">
           <div className="py-4 px-6 space-y-4">
-            <MobileNavLink href="#internships" onClick={() => setIsMenuOpen(false)}>
+            <MobileNavLink href="#internships" onClick={(e) => {
+              setIsMenuOpen(false);
+              handleInternshipClick(e);
+            }}>
               Internships
             </MobileNavLink>
             <MobileNavLink href="#courses" onClick={() => setIsMenuOpen(false)}>
@@ -106,10 +114,11 @@ const Navbar = () => {
 };
 
 // Sub-components
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+const NavLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void }) => (
   <a
     href={href}
     className="font-medium text-gray-700 dark:text-gray-300 hover:text-nexora-500 dark:hover:text-nexora-400 link-underline"
+    onClick={onClick}
   >
     {children}
   </a>
@@ -130,7 +139,7 @@ const MobileNavLink = ({
   children,
 }: {
   href: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
   children: React.ReactNode;
 }) => (
   <a
