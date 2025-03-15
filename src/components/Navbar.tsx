@@ -21,7 +21,7 @@ const Navbar = () => {
 
   const handleInternshipClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open('https://forms.google.com/your-google-form-link', '_blank');
+    window.open('https://forms.gle/kkKckut2FigwpBWF7', '_blank');
   };
 
   return (
