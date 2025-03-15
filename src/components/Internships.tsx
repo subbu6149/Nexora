@@ -154,11 +154,13 @@ const Internships = () => {
     };
   }, [internships]);
 
+  // Function to handle Apply Now button clicks - redirect to Google Form
   const redirectToGoogleForm = (e: React.MouseEvent) => {
     e.preventDefault();
     window.open('https://forms.gle/kkKckut2FigwpBWF7', '_blank');
   };
 
+  // Function to handle View All Internships button clicks
   const handleViewAllClick = () => {
     setShowAll(true);
     // Reset visibility animation for newly displayed items
