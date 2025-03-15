@@ -12,12 +12,23 @@ const Hero = () => {
     setIsVisible(true);
   }, []);
 
+  const handleExploreClick = () => {
+    const internshipSection = document.getElementById('internships');
+    if (internshipSection) {
+      internshipSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative min-h-screen pt-20 overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 grid-bg opacity-40"></div>
       <div className="absolute top-20 -left-40 w-80 h-80 bg-nexora-100 rounded-full filter blur-3xl opacity-30 animate-pulse-soft"></div>
       <div className="absolute bottom-20 -right-40 w-80 h-80 bg-blue-100 rounded-full filter blur-3xl opacity-30 animate-pulse-soft"></div>
+      
+      {/* Additional decorative elements */}
+      <div className="absolute top-1/3 right-1/4 w-40 h-40 bg-purple-100 rounded-full filter blur-2xl opacity-20 animate-pulse-slow"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-40 h-40 bg-teal-100 rounded-full filter blur-2xl opacity-20 animate-pulse-slow"></div>
 
       <div className="container mx-auto max-w-7xl px-4 h-full flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-16 lg:py-0">
@@ -32,17 +43,22 @@ const Hero = () => {
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-              Build Your Career with <span className="bg-clip-text text-transparent bg-gradient-to-r from-nexora-500 to-nexora-700">NEXORA</span>
+              Build Your Career with <span className="bg-clip-text text-transparent bg-gradient-to-r from-nexora-500 via-purple-500 to-nexora-700">NEXORA</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-xl">
               Connect with internships, courses, and journals that shape your future in technology and innovation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="text-base btn-hover bg-nexora-500 hover:bg-nexora-600 text-white px-8 py-6">
-                Explore Opportunities <ArrowRight className="ml-2 h-5 w-5" />
+              <Button 
+                className="text-base btn-hover bg-nexora-500 hover:bg-nexora-600 text-white px-8 py-6 group"
+                onClick={handleExploreClick}
+              >
+                Explore Opportunities 
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button variant="outline" className="text-base btn-hover">
+              <Button variant="outline" className="text-base btn-hover group">
                 Learn More
+                <ArrowRight className="ml-2 h-5 w-5 opacity-0 group-hover:opacity-100 transition-all" />
               </Button>
             </div>
 
@@ -62,6 +78,10 @@ const Hero = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%]">
               <ThreeDModel />
             </div>
+            {/* Decorative floating elements */}
+            <div className="absolute top-1/4 right-1/4 w-10 h-10 bg-nexora-200 rounded-full opacity-70 animate-float-slow"></div>
+            <div className="absolute bottom-1/4 left-1/3 w-6 h-6 bg-blue-200 rounded-full opacity-70 animate-float-medium"></div>
+            <div className="absolute top-1/2 left-1/5 w-8 h-8 bg-purple-200 rounded-full opacity-70 animate-float-fast"></div>
           </div>
         </div>
       </div>
@@ -82,7 +102,7 @@ const Hero = () => {
 
 // Stat Item Component
 const StatItem = ({ icon, value, label }: { icon: React.ReactNode; value: string; label: string }) => (
-  <div className="flex flex-col items-center p-4 bg-white/30 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-800">
+  <div className="flex flex-col items-center p-4 bg-white/30 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-800 hover:shadow-md hover:border-nexora-200 dark:hover:border-nexora-800 transition-all duration-300">
     <div className="p-2 bg-nexora-50 dark:bg-nexora-900/30 rounded-full text-nexora-600 dark:text-nexora-400">
       {icon}
     </div>
