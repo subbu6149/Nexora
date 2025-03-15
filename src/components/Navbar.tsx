@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -21,7 +20,10 @@ const Navbar = () => {
 
   const handleInternshipClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open('https://forms.gle/kkKckut2FigwpBWF7', '_blank');
+    const internshipSection = document.getElementById('internships');
+    if (internshipSection) {
+      internshipSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -40,7 +42,6 @@ const Navbar = () => {
           </span>
         </a>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <NavLink href="#internships" onClick={handleInternshipClick}>Internships</NavLink>
           <NavLink href="#courses">Courses</NavLink>
@@ -67,7 +68,6 @@ const Navbar = () => {
           </Button>
         </div>
 
-        {/* Mobile menu button */}
         <button
           className="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -76,7 +76,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-900 shadow-lg glass-card animate-slide-up">
           <div className="py-4 px-6 space-y-4">
@@ -113,7 +112,6 @@ const Navbar = () => {
   );
 };
 
-// Sub-components
 const NavLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void }) => (
   <a
     href={href}
