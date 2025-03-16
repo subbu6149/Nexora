@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -58,7 +57,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto max-w-7xl flex items-center justify-between">
         <a href="/" className="flex items-center gap-2">
-          <img src="/lovable-uploads/3ec7ea42-ce87-4c53-9009-cb5367fa5d5d.png" alt="Nexora Logo" className="h-10" />
+          <img src="/lovable-uploads/c8b0c876-1c29-4711-8b62-5cf34804e842.png" alt="Nexora Logo" className="h-10" />
         </a>
 
         <nav className="hidden md:flex items-center space-x-8">
@@ -76,7 +75,6 @@ const Navbar = () => {
             </div>
           </div>
           <NavLink href="#about">About</NavLink>
-          <NavLink href="#contact" onClick={handleContactClick}>Contact Us</NavLink>
         </nav>
 
         <button
@@ -116,12 +114,6 @@ const Navbar = () => {
             </MobileNavLink>
             <MobileNavLink href="#about" onClick={() => setIsMenuOpen(false)}>
               About
-            </MobileNavLink>
-            <MobileNavLink href="#contact" onClick={(e) => {
-              setIsMenuOpen(false);
-              handleContactClick(e);
-            }}>
-              Contact Us
             </MobileNavLink>
           </div>
         </div>
