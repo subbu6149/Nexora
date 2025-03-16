@@ -1,11 +1,15 @@
+
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from '@/components/ui/use-toast';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +30,23 @@ const Navbar = () => {
     }
   };
 
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleResourceClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Coming Soon!",
+      description: "This feature will be available soon. Please check back later.",
+      duration: 3000,
+    });
+  };
+
   return (
     <header
       className={cn(
@@ -37,36 +58,26 @@ const Navbar = () => {
     >
       <div className="container mx-auto max-w-7xl flex items-center justify-between">
         <a href="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-nexora-500 to-nexora-700">
-            NEXORA
-          </span>
+          <img src="/lovable-uploads/3ec7ea42-ce87-4c53-9009-cb5367fa5d5d.png" alt="Nexora Logo" className="h-10" />
         </a>
 
         <nav className="hidden md:flex items-center space-x-8">
           <NavLink href="#internships" onClick={handleInternshipClick}>Internships</NavLink>
-          <NavLink href="#courses">Courses</NavLink>
-          <NavLink href="#journals">Journals</NavLink>
+          <NavLink href="#contact" onClick={handleContactClick}>Courses</NavLink>
+          <NavLink href="#contact" onClick={handleContactClick}>Journals</NavLink>
           <div className="relative group">
             <button className="flex items-center gap-1 font-medium text-gray-700 hover:text-nexora-500 dark:text-gray-300 dark:hover:text-white transition-colors">
               Resources <ChevronDown className="h-4 w-4" />
             </button>
             <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-              <DropdownLink href="#">Blog</DropdownLink>
-              <DropdownLink href="#">Research Papers</DropdownLink>
-              <DropdownLink href="#">Webinars</DropdownLink>
+              <DropdownLink href="#" onClick={handleResourceClick}>Blog</DropdownLink>
+              <DropdownLink href="#" onClick={handleResourceClick}>Research Papers</DropdownLink>
+              <DropdownLink href="#" onClick={handleResourceClick}>Webinars</DropdownLink>
             </div>
           </div>
           <NavLink href="#about">About</NavLink>
+          <NavLink href="#contact" onClick={handleContactClick}>Contact Us</NavLink>
         </nav>
-
-        <div className="hidden md:flex items-center space-x-4">
-          <Button variant="outline" className="font-medium">
-            Log in
-          </Button>
-          <Button className="bg-nexora-500 hover:bg-nexora-600 text-white">
-            Sign up
-          </Button>
-        </div>
 
         <button
           className="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-300"
@@ -85,26 +96,33 @@ const Navbar = () => {
             }}>
               Internships
             </MobileNavLink>
-            <MobileNavLink href="#courses" onClick={() => setIsMenuOpen(false)}>
+            <MobileNavLink href="#contact" onClick={(e) => {
+              setIsMenuOpen(false);
+              handleContactClick(e);
+            }}>
               Courses
             </MobileNavLink>
-            <MobileNavLink href="#journals" onClick={() => setIsMenuOpen(false)}>
+            <MobileNavLink href="#contact" onClick={(e) => {
+              setIsMenuOpen(false);
+              handleContactClick(e);
+            }}>
               Journals
             </MobileNavLink>
-            <MobileNavLink href="#resources" onClick={() => setIsMenuOpen(false)}>
+            <MobileNavLink href="#" onClick={(e) => {
+              setIsMenuOpen(false);
+              handleResourceClick(e);
+            }}>
               Resources
             </MobileNavLink>
             <MobileNavLink href="#about" onClick={() => setIsMenuOpen(false)}>
               About
             </MobileNavLink>
-            <div className="pt-4 flex flex-col space-y-3">
-              <Button variant="outline" className="w-full justify-center">
-                Log in
-              </Button>
-              <Button className="w-full justify-center bg-nexora-500 hover:bg-nexora-600">
-                Sign up
-              </Button>
-            </div>
+            <MobileNavLink href="#contact" onClick={(e) => {
+              setIsMenuOpen(false);
+              handleContactClick(e);
+            }}>
+              Contact Us
+            </MobileNavLink>
           </div>
         </div>
       )}
@@ -122,10 +140,11 @@ const NavLink = ({ href, children, onClick }: { href: string; children: React.Re
   </a>
 );
 
-const DropdownLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+const DropdownLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void }) => (
   <a
     href={href}
     className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-nexora-500"
+    onClick={onClick}
   >
     {children}
   </a>

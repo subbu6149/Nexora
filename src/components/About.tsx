@@ -49,7 +49,7 @@ const About = () => {
               </p>
 
               <p className="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
-                Founded in 2020, we've built a vibrant community of learners, educators, and industry partners
+                Founded in 2024, we've built a vibrant community of learners, educators, and industry partners
                 all working together to create meaningful pathways for student success.
                 Through our curated internships, expertly designed courses, and peer-reviewed journals,
                 we're closing the gap between academic learning and professional application.

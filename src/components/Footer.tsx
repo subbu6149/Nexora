@@ -1,6 +1,5 @@
 
-import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,12 +7,12 @@ const Footer = () => {
   return (
     <footer className="bg-slate-900 text-white pt-16 pb-8">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Company Info */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-nexora-400 to-nexora-600">
-              NEXORA
-            </h3>
+            <div className="flex items-center">
+              <img src="/lovable-uploads/3ec7ea42-ce87-4c53-9009-cb5367fa5d5d.png" alt="Nexora Logo" className="h-10" />
+            </div>
             <p className="text-slate-300 max-w-xs">
               Bridging the gap between students and opportunities through 
               quality internships, courses, and publications.
@@ -34,7 +33,6 @@ const Footer = () => {
               <FooterLink href="#courses">Courses</FooterLink>
               <FooterLink href="#journals">Journals</FooterLink>
               <FooterLink href="#about">About Us</FooterLink>
-              <FooterLink href="#faq">FAQ</FooterLink>
             </ul>
           </div>
 
@@ -42,39 +40,15 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
             <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="mr-2 h-5 w-5 text-nexora-400 shrink-0 mt-0.5" />
-                <span className="text-slate-300">123 Innovation Street, Tech City, TC 10000</span>
-              </li>
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-nexora-400 shrink-0" />
-                <span className="text-slate-300">+1 (555) 123-4567</span>
+                <span className="text-slate-300">+91 9032959902</span>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5 text-nexora-400 shrink-0" />
-                <span className="text-slate-300">contact@nexora.com</span>
+                <span className="text-slate-300">noreply.nexora@gmail.com</span>
               </li>
             </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Newsletter</h4>
-            <p className="text-slate-300 mb-4">
-              Subscribe to our newsletter for the latest opportunities.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="px-4 py-2 rounded-md bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-nexora-400 text-slate-300"
-              />
-              <Button 
-                className="bg-nexora-500 hover:bg-nexora-600 text-white"
-              >
-                Subscribe
-              </Button>
-            </div>
           </div>
         </div>
 
