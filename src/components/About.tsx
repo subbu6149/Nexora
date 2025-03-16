@@ -55,12 +55,7 @@ const About = () => {
                 we're closing the gap between academic learning and professional application.
               </p>
 
-              <div className="pt-4">
-                <Button className="group bg-nexora-500 hover:bg-nexora-600 text-white">
-                  Learn more about our story
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </div>
+              
             </div>
           </div>
         </div>

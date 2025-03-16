@@ -56,10 +56,7 @@ const Hero = () => {
                 Explore Opportunities 
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button variant="outline" className="text-base btn-hover group">
-                Learn More
-                <ArrowRight className="ml-2 h-5 w-5 opacity-0 group-hover:opacity-100 transition-all" />
-              </Button>
+             
             </div>
 
             {/* Stats */}

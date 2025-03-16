@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from '@/components/ui/use-toast';
@@ -57,7 +56,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto max-w-7xl flex items-center justify-between">
         <a href="/" className="flex items-center gap-2">
-          <img src="/lovable-uploads/c8b0c876-1c29-4711-8b62-5cf34804e842.png" alt="Nexora Logo" className="h-10" />
+          <img src="/lovable-uploads/logo.png" alt="Nexora Logo" className="h-16" />
         </a>
 
         <nav className="hidden md:flex items-center space-x-8">

@@ -131,7 +131,8 @@ const Features = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <Button className="bg-nexora-500 hover:bg-nexora-600 text-white">
+          <Button className="bg-nexora-500 hover:bg-nexora-600 text-white"
+          onClick={() => window.open('https://forms.gle/kkKckut2FigwpBWF7', '_blank')}>
             Start Your Journey Today
           </Button>
         </div>

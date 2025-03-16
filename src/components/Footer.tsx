@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center">
-              <img src="/lovable-uploads/3ec7ea42-ce87-4c53-9009-cb5367fa5d5d.png" alt="Nexora Logo" className="h-10" />
+              <img src="/lovable-uploads/logo.png" alt="Nexora Logo" className="h-10" />
             </div>
             <p className="text-slate-300 max-w-xs">
               Bridging the gap between students and opportunities through 

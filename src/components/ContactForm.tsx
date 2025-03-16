@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -22,14 +21,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { toast } from '@/components/ui/use-toast';
-import { CheckCircle2, Send, User, Mail, Phone, Clock } from 'lucide-react';
+import { CheckCircle2, Send, User, Mail, Phone } from 'lucide-react';
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   phone: z.string().min(10, { message: 'Please enter a valid phone number.' }),
   domain: z.string().min(1, { message: 'Please select your interested domain.' }),
-  duration: z.string().min(1, { message: 'Please specify the duration.' }),
   message: z.string().optional(),
 });
 
@@ -39,6 +37,9 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // Google Sheet script URL - your deployed script URL
+  const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzh-gv2k8APi9KSmAmmkunpL-tFbCwwhklT8c50nXnDXNlGBW94jeX4kmn5vEq3tXGuQw/exec";
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,7 +47,6 @@ const ContactForm = () => {
       email: '',
       phone: '',
       domain: '',
-      duration: '',
       message: '',
     },
   });
@@ -54,12 +54,20 @@ const ContactForm = () => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     
-    // Simulate API call
     try {
-      // Simulating a delay for form submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      console.log('Submitting form data:', data);
       
-      console.log('Form data submitted:', data);
+      // Send data to Google Sheet
+      const response = await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'no-cors' // This is required due to CORS restrictions with Google Apps Script
+      });
+      
+      console.log('Form submission completed');
       
       // Show success
       setIsSuccess(true);
@@ -74,6 +82,7 @@ const ContactForm = () => {
       // Reset success state after a delay
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
+      console.error('Error submitting form:', error);
       toast({
         title: "Error submitting form",
         description: "Please try again later.",
@@ -193,48 +202,23 @@ const ContactForm = () => {
                     name="domain"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Interested Domain</FormLabel>
+                        <FormLabel>How can I help you?</FormLabel>
                         <Select 
                           onValueChange={field.onChange} 
                           defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select your interested domain" />
+                              <SelectValue placeholder="Select your needs" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="web_development">Web Development</SelectItem>
-                            <SelectItem value="mobile_development">Mobile Development</SelectItem>
-                            <SelectItem value="data_science">Data Science</SelectItem>
-                            <SelectItem value="machine_learning">Machine Learning</SelectItem>
-                            <SelectItem value="ui_ux_design">UI/UX Design</SelectItem>
-                            <SelectItem value="digital_marketing">Digital Marketing</SelectItem>
-                            <SelectItem value="content_writing">Content Writing</SelectItem>
+                            <SelectItem value="internship">Internship</SelectItem>
+                            <SelectItem value="course">Course</SelectItem>
+                            <SelectItem value="research_paper">Research Paper</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="duration"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Duration</FormLabel>
-                        <FormControl>
-                          <div className="relative">
-                            <Clock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                            <Input 
-                              placeholder="e.g., 3 months, 6 months" 
-                              className="pl-10" 
-                              {...field} 
-                            />
-                          </div>
-                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
