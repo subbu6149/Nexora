@@ -45,3 +45,6 @@ The application includes a simple Express backend with the following endpoints:
 - `/public` - Static assets
 - `server.js` - Express backend server
 - `start-server.js` - Helper script to run the application in production mode
+
+
+## Live link: https://www.nexora-as.com/
